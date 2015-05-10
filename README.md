@@ -1,6 +1,6 @@
 # Geometric Modelling and Animation
 
-Geoemtric Modelling and Animation assignments in gorilla.
+Geometric Modelling and Animation assignments in gorilla.
 
 ## Worksheets
 
