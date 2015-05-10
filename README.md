@@ -1,14 +1,15 @@
-# geometric-modelling
+# Geometric Modelling and Animation
 
-A Clojure library designed to ... well, that part is up to you.
+Geoemtric Modelling and Animation assignments in gorilla.
 
-## Usage
+## Worksheets
 
-FIXME
+- [assignment 2](http://viewer.gorilla-repl.org/view.html?source=github&user=lambda-kollektiv&repo=geometric-modelling&path=ws/assignment2.clj)
+
 
 ## License
 
-Copyright © 2015 FIXME
+Copyright © 2015 Konrad Kühne
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
