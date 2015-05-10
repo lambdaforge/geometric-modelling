@@ -4,4 +4,8 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.6.0"]
-                 [incanter "1.5.6"]])
+                 [net.mikera/core.matrix "0.34.0"]
+                 [net.mikera/vectorz-clj "0.29.0"]
+                 [gg4clj "0.1.0"]
+                 [incanter "1.9.0"]]
+  :plugins [[lein-gorilla "0.3.4"]])
