@@ -207,7 +207,7 @@ c1
 ;; **
 
 ;; @@
-(def points-0  [ [1 1] [2 3] [3 2] [5 7] [4 11]])
+(def points-0  [ [1 1] [2 3] [3 10] [4 11] [7 7]])
 ;; @@
 ;; =>
 ;;; {"type":"html","content":"<span class='clj-var'>#&#x27;withered-oasis/points-0</span>","value":"#'withered-oasis/points-0"}
@@ -218,50 +218,50 @@ c1
 (gma/de-casteljau 0 4 3/4 points-0 casteljau-points)
 ;; @@
 ;; ->
-;;; b00: [1 1]
-;;; b10: [2 3]
-;;; b01: [7/4 5/2]
-;;; b10: [2 3]
-;;; b20: [3 2]
-;;; b11: [11/4 9/4]
-;;; b02: [5/2 37/16]
-;;; b10: [2 3]
-;;; b20: [3 2]
-;;; b11: [11/4 9/4]
-;;; b20: [3 2]
-;;; b30: [5 7]
-;;; b21: [9/2 23/4]
-;;; b12: [65/16 39/8]
-;;; b03: [235/64 271/64]
-;;; b10: [2 3]
-;;; b20: [3 2]
-;;; b11: [11/4 9/4]
-;;; b20: [3 2]
-;;; b30: [5 7]
-;;; b21: [9/2 23/4]
-;;; b12: [65/16 39/8]
-;;; b20: [3 2]
-;;; b30: [5 7]
-;;; b21: [9/2 23/4]
-;;; b30: [5 7]
-;;; b40: [4 11]
-;;; b31: [17/4 10N]
-;;; b22: [69/16 143/16]
-;;; b13: [17/4 507/64]
-;;; b04: [1051/256 7N]
+;;; i: 0 ,r: 0  -&gt;  [1 1]
+;;; i: 1 ,r: 0  -&gt;  [2 3]
+;;; i: 0 ,r: 1  -&gt;  [7/4 5/2]
+;;; i: 1 ,r: 0  -&gt;  [2 3]
+;;; i: 2 ,r: 0  -&gt;  [3 10]
+;;; i: 1 ,r: 1  -&gt;  [11/4 33/4]
+;;; i: 0 ,r: 2  -&gt;  [5/2 109/16]
+;;; i: 1 ,r: 0  -&gt;  [2 3]
+;;; i: 2 ,r: 0  -&gt;  [3 10]
+;;; i: 1 ,r: 1  -&gt;  [11/4 33/4]
+;;; i: 2 ,r: 0  -&gt;  [3 10]
+;;; i: 3 ,r: 0  -&gt;  [4 11]
+;;; i: 2 ,r: 1  -&gt;  [15/4 43/4]
+;;; i: 1 ,r: 2  -&gt;  [7/2 81/8]
+;;; i: 0 ,r: 3  -&gt;  [13/4 595/64]
+;;; i: 1 ,r: 0  -&gt;  [2 3]
+;;; i: 2 ,r: 0  -&gt;  [3 10]
+;;; i: 1 ,r: 1  -&gt;  [11/4 33/4]
+;;; i: 2 ,r: 0  -&gt;  [3 10]
+;;; i: 3 ,r: 0  -&gt;  [4 11]
+;;; i: 2 ,r: 1  -&gt;  [15/4 43/4]
+;;; i: 1 ,r: 2  -&gt;  [7/2 81/8]
+;;; i: 2 ,r: 0  -&gt;  [3 10]
+;;; i: 3 ,r: 0  -&gt;  [4 11]
+;;; i: 2 ,r: 1  -&gt;  [15/4 43/4]
+;;; i: 3 ,r: 0  -&gt;  [4 11]
+;;; i: 4 ,r: 0  -&gt;  [7 7]
+;;; i: 3 ,r: 1  -&gt;  [25/4 8N]
+;;; i: 2 ,r: 2  -&gt;  [45/8 139/16]
+;;; i: 1 ,r: 3  -&gt;  [163/32 579/64]
+;;; i: 0 ,r: 4  -&gt;  [593/128 583/64]
 ;;; 
 ;; <-
 ;; =>
-;;; {"type":"list-like","open":"<span class='clj-vector'>[</span>","close":"<span class='clj-vector'>]</span>","separator":" ","items":[{"type":"html","content":"<span class='clj-ratio'>1051/256</span>","value":"1051/256"},{"type":"html","content":"<span class='clj-bigint'>7N</span>","value":"7N"}],"value":"[1051/256 7N]"}
+;;; {"type":"list-like","open":"<span class='clj-vector'>[</span>","close":"<span class='clj-vector'>]</span>","separator":" ","items":[{"type":"html","content":"<span class='clj-ratio'>593/128</span>","value":"593/128"},{"type":"html","content":"<span class='clj-ratio'>583/64</span>","value":"583/64"}],"value":"[593/128 583/64]"}
 ;; <=
 
 ;; @@
 (plot/compose
-  (plot/list-plot points-0 :plot-range [[0 6] [0 15]])
+  (plot/list-plot points-0 :plot-range [[0 8] [0 15]])
   (plot/list-plot (remove (into #{} points-0) @casteljau-points) :color "orange"))
 ;; @@
 ;; =>
-;;; {"type":"vega","content":{"width":400,"height":247.2187957763672,"padding":{"bottom":20,"top":10,"right":10,"left":50},"scales":[{"name":"x","type":"linear","range":"width","zero":false,"domain":[0,6]},{"name":"y","type":"linear","range":"height","nice":true,"zero":false,"domain":[0,15]}],"axes":[{"scale":"x","type":"x"},{"scale":"y","type":"y"}],"data":[{"name":"00c7d7b9-0390-4a9d-928d-6544942226cd","values":[{"x":1,"y":1},{"x":2,"y":3},{"x":3,"y":2},{"x":5,"y":7},{"x":4,"y":11}]},{"name":"4a73fcdf-7992-4c4c-99f8-0baae0132b33","values":[{"x":4.5,"y":5.75},{"x":2.5,"y":2.3125},{"x":4.25,"y":7.921875},{"x":3.671875,"y":4.234375},{"x":4.3125,"y":8.9375},{"x":4.0625,"y":4.875},{"x":4.25,"y":10},{"x":1.75,"y":2.5},{"x":2.75,"y":2.25}]}],"marks":[{"type":"symbol","from":{"data":"00c7d7b9-0390-4a9d-928d-6544942226cd"},"properties":{"enter":{"x":{"scale":"x","field":"data.x"},"y":{"scale":"y","field":"data.y"},"fill":{"value":"steelblue"},"fillOpacity":{"value":1}},"update":{"shape":"circle","size":{"value":70},"stroke":{"value":"transparent"}},"hover":{"size":{"value":210},"stroke":{"value":"white"}}}},{"type":"symbol","from":{"data":"4a73fcdf-7992-4c4c-99f8-0baae0132b33"},"properties":{"enter":{"x":{"scale":"x","field":"data.x"},"y":{"scale":"y","field":"data.y"},"fill":{"value":"orange"},"fillOpacity":{"value":1}},"update":{"shape":"circle","size":{"value":70},"stroke":{"value":"transparent"}},"hover":{"size":{"value":210},"stroke":{"value":"white"}}}}]},"value":"#gorilla_repl.vega.VegaView{:content {:width 400, :height 247.2188, :padding {:bottom 20, :top 10, :right 10, :left 50}, :scales [{:name \"x\", :type \"linear\", :range \"width\", :zero false, :domain [0 6]} {:name \"y\", :type \"linear\", :range \"height\", :nice true, :zero false, :domain [0 15]}], :axes [{:scale \"x\", :type \"x\"} {:scale \"y\", :type \"y\"}], :data ({:name \"00c7d7b9-0390-4a9d-928d-6544942226cd\", :values ({:x 1, :y 1} {:x 2, :y 3} {:x 3, :y 2} {:x 5, :y 7} {:x 4, :y 11})} {:name \"4a73fcdf-7992-4c4c-99f8-0baae0132b33\", :values ({:x 9/2, :y 23/4} {:x 5/2, :y 37/16} {:x 17/4, :y 507/64} {:x 235/64, :y 271/64} {:x 69/16, :y 143/16} {:x 65/16, :y 39/8} {:x 17/4, :y 10N} {:x 7/4, :y 5/2} {:x 11/4, :y 9/4})}), :marks ({:type \"symbol\", :from {:data \"00c7d7b9-0390-4a9d-928d-6544942226cd\"}, :properties {:enter {:x {:scale \"x\", :field \"data.x\"}, :y {:scale \"y\", :field \"data.y\"}, :fill {:value \"steelblue\"}, :fillOpacity {:value 1}}, :update {:shape \"circle\", :size {:value 70}, :stroke {:value \"transparent\"}}, :hover {:size {:value 210}, :stroke {:value \"white\"}}}} {:type \"symbol\", :from {:data \"4a73fcdf-7992-4c4c-99f8-0baae0132b33\"}, :properties {:enter {:x {:scale \"x\", :field \"data.x\"}, :y {:scale \"y\", :field \"data.y\"}, :fill {:value \"orange\"}, :fillOpacity {:value 1}}, :update {:shape \"circle\", :size {:value 70}, :stroke {:value \"transparent\"}}, :hover {:size {:value 210}, :stroke {:value \"white\"}}}})}}"}
+;;; {"type":"vega","content":{"width":400,"height":247.2187957763672,"padding":{"bottom":20,"top":10,"right":10,"left":50},"scales":[{"name":"x","type":"linear","range":"width","zero":false,"domain":[0,8]},{"name":"y","type":"linear","range":"height","nice":true,"zero":false,"domain":[0,15]}],"axes":[{"scale":"x","type":"x"},{"scale":"y","type":"y"}],"data":[{"name":"d4a0e217-ce9b-4dad-8caa-42b29540d6c0","values":[{"x":1,"y":1},{"x":2,"y":3},{"x":3,"y":10},{"x":4,"y":11},{"x":7,"y":7}]},{"name":"ae94a678-2fa8-4146-b6d7-d6f73ef4c009","values":[{"x":3.5,"y":10.125},{"x":3.25,"y":9.296875},{"x":6.25,"y":8},{"x":5.625,"y":8.6875},{"x":2.75,"y":8.25},{"x":3.75,"y":10.75},{"x":2.5,"y":6.8125},{"x":5.09375,"y":9.046875},{"x":1.75,"y":2.5}]}],"marks":[{"type":"symbol","from":{"data":"d4a0e217-ce9b-4dad-8caa-42b29540d6c0"},"properties":{"enter":{"x":{"scale":"x","field":"data.x"},"y":{"scale":"y","field":"data.y"},"fill":{"value":"steelblue"},"fillOpacity":{"value":1}},"update":{"shape":"circle","size":{"value":70},"stroke":{"value":"transparent"}},"hover":{"size":{"value":210},"stroke":{"value":"white"}}}},{"type":"symbol","from":{"data":"ae94a678-2fa8-4146-b6d7-d6f73ef4c009"},"properties":{"enter":{"x":{"scale":"x","field":"data.x"},"y":{"scale":"y","field":"data.y"},"fill":{"value":"orange"},"fillOpacity":{"value":1}},"update":{"shape":"circle","size":{"value":70},"stroke":{"value":"transparent"}},"hover":{"size":{"value":210},"stroke":{"value":"white"}}}}]},"value":"#gorilla_repl.vega.VegaView{:content {:width 400, :height 247.2188, :padding {:bottom 20, :top 10, :right 10, :left 50}, :scales [{:name \"x\", :type \"linear\", :range \"width\", :zero false, :domain [0 8]} {:name \"y\", :type \"linear\", :range \"height\", :nice true, :zero false, :domain [0 15]}], :axes [{:scale \"x\", :type \"x\"} {:scale \"y\", :type \"y\"}], :data ({:name \"d4a0e217-ce9b-4dad-8caa-42b29540d6c0\", :values ({:x 1, :y 1} {:x 2, :y 3} {:x 3, :y 10} {:x 4, :y 11} {:x 7, :y 7})} {:name \"ae94a678-2fa8-4146-b6d7-d6f73ef4c009\", :values ({:x 7/2, :y 81/8} {:x 13/4, :y 595/64} {:x 25/4, :y 8N} {:x 45/8, :y 139/16} {:x 11/4, :y 33/4} {:x 15/4, :y 43/4} {:x 5/2, :y 109/16} {:x 163/32, :y 579/64} {:x 7/4, :y 5/2})}), :marks ({:type \"symbol\", :from {:data \"d4a0e217-ce9b-4dad-8caa-42b29540d6c0\"}, :properties {:enter {:x {:scale \"x\", :field \"data.x\"}, :y {:scale \"y\", :field \"data.y\"}, :fill {:value \"steelblue\"}, :fillOpacity {:value 1}}, :update {:shape \"circle\", :size {:value 70}, :stroke {:value \"transparent\"}}, :hover {:size {:value 210}, :stroke {:value \"white\"}}}} {:type \"symbol\", :from {:data \"ae94a678-2fa8-4146-b6d7-d6f73ef4c009\"}, :properties {:enter {:x {:scale \"x\", :field \"data.x\"}, :y {:scale \"y\", :field \"data.y\"}, :fill {:value \"orange\"}, :fillOpacity {:value 1}}, :update {:shape \"circle\", :size {:value 70}, :stroke {:value \"transparent\"}}, :hover {:size {:value 210}, :stroke {:value \"white\"}}}})}}"}
 ;; <=
 
 ;; @@

@@ -24,17 +24,16 @@
 
 
 (defn de-casteljau
-  "de Casteljau points calculated"
+  "Calculate de Casteljau points "
   [i r t b points]
   (if (= r 0)
     (let [res (get b i)]
-      (println (str "b" i r ":") res)
+      (println "i:" i ",r:" r " -> " res)
       (swap! points conj res)
       res)
     (let [b1 (de-casteljau i (dec r) t b points)
           b2 (de-casteljau (inc i) (dec r) t b points)
-          res (+ (* (- 1 t) b1)
-                 (* t b2))]
-      (println (str "b" i r ":") res)
+          res (+ (* (- 1 t) b1) (* t b2))]
+      (println "i:" i ",r:" r " -> " res)
       (swap! points conj b1 b2)
       res)))
