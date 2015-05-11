@@ -28,12 +28,23 @@
   [i r t b points]
   (if (= r 0)
     (let [res (get b i)]
-      (println "i:" i ",r:" r " -> " res)
+      #_(println "i:" i ",r:" r " -> " res)
       (swap! points conj res)
       res)
     (let [b1 (de-casteljau i (dec r) t b points)
           b2 (de-casteljau (inc i) (dec r) t b points)
           res (+ (* (- 1 t) b1) (* t b2))]
-      (println "i:" i ",r:" r " -> " res)
+      #_(println "i:" i ",r:" r " -> " res)
       (swap! points conj b1 b2)
       res)))
+
+
+(comment
+
+  (def points [[1 1] [2 4] [3 7] [4 11] [5 5]])
+
+  (def de-casteljau-points (atom #{}))
+
+  (de-casteljau 0 4 1/2 points de-casteljau-points)
+
+  )
