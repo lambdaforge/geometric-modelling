@@ -40,7 +40,7 @@
 ;; <=
 
 ;; **
-;;; explicit representation @@p(x)@@
+;;; ### explicit representation @@p(x)@@
 ;; **
 
 ;; @@
@@ -68,7 +68,7 @@ a1
 ;; <=
 
 ;; **
-;;; Parametrized representation for @@t_0=0, t_1=1, t_2=2@@
+;;; ### Parametrized representation for @@t_0=0, t_1=1, t_2=2@@
 ;; **
 
 ;; @@
@@ -101,7 +101,7 @@ c0
 ;; <=
 
 ;; **
-;;; Parametrized representation for @@ t_0=1, t_1=4, t_2=5 @@
+;;; ### Parametrized representation for @@ t_0=1, t_1=4, t_2=5 @@
 ;; **
 
 ;; @@
@@ -171,7 +171,7 @@ c1
 ;; **
 
 ;; **
-;;; ### Cubic Berstein polynomials explicit
+;;; ### Cubic Bernstein polynomials explicit
 ;; **
 
 ;; @@
@@ -189,7 +189,7 @@ c1
 ;; <=
 
 ;; **
-;;; ### Cubic Berstein polynomials recursive
+;;; ### Cubic Bernstein polynomials recursive
 ;; **
 
 ;; @@
