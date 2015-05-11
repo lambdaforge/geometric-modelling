@@ -1,7 +1,7 @@
 ;; gorilla-repl.fileformat = 1
 
 ;; **
-;;; # GMA: Assignment 2
+;;; # Assignment 2
 ;; **
 
 ;; @@
@@ -207,47 +207,48 @@ c1
 ;; **
 
 ;; @@
-(def casteljau-points  [ [1 1] [2 3] [3 2] [5 7] [4 11]])
+(def points-0  [ [1 1] [2 3] [3 2] [5 7] [4 11]])
 ;; @@
 ;; =>
-;;; {"type":"html","content":"<span class='clj-var'>#&#x27;withered-oasis/casteljau-points</span>","value":"#'withered-oasis/casteljau-points"}
+;;; {"type":"html","content":"<span class='clj-var'>#&#x27;withered-oasis/points-0</span>","value":"#'withered-oasis/points-0"}
 ;; <=
 
 ;; @@
-(gma/de-casteljau 0 4 3/4 casteljau-points)
+(def casteljau-points (atom #{}))
+(gma/de-casteljau 0 4 3/4 points-0 casteljau-points)
 ;; @@
 ;; ->
-;;; [0 0] [1 1]
-;;; [1 0] [2 3]
-;;; [0 1] [7/4 5/2]
-;;; [1 0] [2 3]
-;;; [2 0] [3 2]
-;;; [1 1] [11/4 9/4]
-;;; [0 2] [5/2 37/16]
-;;; [1 0] [2 3]
-;;; [2 0] [3 2]
-;;; [1 1] [11/4 9/4]
-;;; [2 0] [3 2]
-;;; [3 0] [5 7]
-;;; [2 1] [9/2 23/4]
-;;; [1 2] [65/16 39/8]
-;;; [0 3] [235/64 271/64]
-;;; [1 0] [2 3]
-;;; [2 0] [3 2]
-;;; [1 1] [11/4 9/4]
-;;; [2 0] [3 2]
-;;; [3 0] [5 7]
-;;; [2 1] [9/2 23/4]
-;;; [1 2] [65/16 39/8]
-;;; [2 0] [3 2]
-;;; [3 0] [5 7]
-;;; [2 1] [9/2 23/4]
-;;; [3 0] [5 7]
-;;; [4 0] [4 11]
-;;; [3 1] [17/4 10N]
-;;; [2 2] [69/16 143/16]
-;;; [1 3] [17/4 507/64]
-;;; [0 4] [1051/256 7N]
+;;; b00: [1 1]
+;;; b10: [2 3]
+;;; b01: [7/4 5/2]
+;;; b10: [2 3]
+;;; b20: [3 2]
+;;; b11: [11/4 9/4]
+;;; b02: [5/2 37/16]
+;;; b10: [2 3]
+;;; b20: [3 2]
+;;; b11: [11/4 9/4]
+;;; b20: [3 2]
+;;; b30: [5 7]
+;;; b21: [9/2 23/4]
+;;; b12: [65/16 39/8]
+;;; b03: [235/64 271/64]
+;;; b10: [2 3]
+;;; b20: [3 2]
+;;; b11: [11/4 9/4]
+;;; b20: [3 2]
+;;; b30: [5 7]
+;;; b21: [9/2 23/4]
+;;; b12: [65/16 39/8]
+;;; b20: [3 2]
+;;; b30: [5 7]
+;;; b21: [9/2 23/4]
+;;; b30: [5 7]
+;;; b40: [4 11]
+;;; b31: [17/4 10N]
+;;; b22: [69/16 143/16]
+;;; b13: [17/4 507/64]
+;;; b04: [1051/256 7N]
 ;;; 
 ;; <-
 ;; =>
@@ -255,10 +256,12 @@ c1
 ;; <=
 
 ;; @@
-(plot/list-plot casteljau-points)
+(plot/compose
+  (plot/list-plot points-0 :plot-range [[0 6] [0 15]])
+  (plot/list-plot (remove (into #{} points-0) @casteljau-points) :color "orange"))
 ;; @@
 ;; =>
-;;; {"type":"vega","content":{"axes":[{"scale":"x","type":"x"},{"scale":"y","type":"y"}],"scales":[{"name":"x","type":"linear","range":"width","zero":false,"domain":{"data":"66f79ea6-f848-49a7-8cce-2afbdc004297","field":"data.x"}},{"name":"y","type":"linear","range":"height","nice":true,"zero":false,"domain":{"data":"66f79ea6-f848-49a7-8cce-2afbdc004297","field":"data.y"}}],"marks":[{"type":"symbol","from":{"data":"66f79ea6-f848-49a7-8cce-2afbdc004297"},"properties":{"enter":{"x":{"scale":"x","field":"data.x"},"y":{"scale":"y","field":"data.y"},"fill":{"value":"steelblue"},"fillOpacity":{"value":1}},"update":{"shape":"circle","size":{"value":70},"stroke":{"value":"transparent"}},"hover":{"size":{"value":210},"stroke":{"value":"white"}}}}],"data":[{"name":"66f79ea6-f848-49a7-8cce-2afbdc004297","values":[{"x":1,"y":1},{"x":2,"y":3},{"x":3,"y":2},{"x":5,"y":7},{"x":4,"y":11}]}],"width":400,"height":247.2187957763672,"padding":{"bottom":20,"top":10,"right":10,"left":50}},"value":"#gorilla_repl.vega.VegaView{:content {:axes [{:scale \"x\", :type \"x\"} {:scale \"y\", :type \"y\"}], :scales [{:name \"x\", :type \"linear\", :range \"width\", :zero false, :domain {:data \"66f79ea6-f848-49a7-8cce-2afbdc004297\", :field \"data.x\"}} {:name \"y\", :type \"linear\", :range \"height\", :nice true, :zero false, :domain {:data \"66f79ea6-f848-49a7-8cce-2afbdc004297\", :field \"data.y\"}}], :marks [{:type \"symbol\", :from {:data \"66f79ea6-f848-49a7-8cce-2afbdc004297\"}, :properties {:enter {:x {:scale \"x\", :field \"data.x\"}, :y {:scale \"y\", :field \"data.y\"}, :fill {:value \"steelblue\"}, :fillOpacity {:value 1}}, :update {:shape \"circle\", :size {:value 70}, :stroke {:value \"transparent\"}}, :hover {:size {:value 210}, :stroke {:value \"white\"}}}}], :data [{:name \"66f79ea6-f848-49a7-8cce-2afbdc004297\", :values ({:x 1, :y 1} {:x 2, :y 3} {:x 3, :y 2} {:x 5, :y 7} {:x 4, :y 11})}], :width 400, :height 247.2188, :padding {:bottom 20, :top 10, :right 10, :left 50}}}"}
+;;; {"type":"vega","content":{"width":400,"height":247.2187957763672,"padding":{"bottom":20,"top":10,"right":10,"left":50},"scales":[{"name":"x","type":"linear","range":"width","zero":false,"domain":[0,6]},{"name":"y","type":"linear","range":"height","nice":true,"zero":false,"domain":[0,15]}],"axes":[{"scale":"x","type":"x"},{"scale":"y","type":"y"}],"data":[{"name":"00c7d7b9-0390-4a9d-928d-6544942226cd","values":[{"x":1,"y":1},{"x":2,"y":3},{"x":3,"y":2},{"x":5,"y":7},{"x":4,"y":11}]},{"name":"4a73fcdf-7992-4c4c-99f8-0baae0132b33","values":[{"x":4.5,"y":5.75},{"x":2.5,"y":2.3125},{"x":4.25,"y":7.921875},{"x":3.671875,"y":4.234375},{"x":4.3125,"y":8.9375},{"x":4.0625,"y":4.875},{"x":4.25,"y":10},{"x":1.75,"y":2.5},{"x":2.75,"y":2.25}]}],"marks":[{"type":"symbol","from":{"data":"00c7d7b9-0390-4a9d-928d-6544942226cd"},"properties":{"enter":{"x":{"scale":"x","field":"data.x"},"y":{"scale":"y","field":"data.y"},"fill":{"value":"steelblue"},"fillOpacity":{"value":1}},"update":{"shape":"circle","size":{"value":70},"stroke":{"value":"transparent"}},"hover":{"size":{"value":210},"stroke":{"value":"white"}}}},{"type":"symbol","from":{"data":"4a73fcdf-7992-4c4c-99f8-0baae0132b33"},"properties":{"enter":{"x":{"scale":"x","field":"data.x"},"y":{"scale":"y","field":"data.y"},"fill":{"value":"orange"},"fillOpacity":{"value":1}},"update":{"shape":"circle","size":{"value":70},"stroke":{"value":"transparent"}},"hover":{"size":{"value":210},"stroke":{"value":"white"}}}}]},"value":"#gorilla_repl.vega.VegaView{:content {:width 400, :height 247.2188, :padding {:bottom 20, :top 10, :right 10, :left 50}, :scales [{:name \"x\", :type \"linear\", :range \"width\", :zero false, :domain [0 6]} {:name \"y\", :type \"linear\", :range \"height\", :nice true, :zero false, :domain [0 15]}], :axes [{:scale \"x\", :type \"x\"} {:scale \"y\", :type \"y\"}], :data ({:name \"00c7d7b9-0390-4a9d-928d-6544942226cd\", :values ({:x 1, :y 1} {:x 2, :y 3} {:x 3, :y 2} {:x 5, :y 7} {:x 4, :y 11})} {:name \"4a73fcdf-7992-4c4c-99f8-0baae0132b33\", :values ({:x 9/2, :y 23/4} {:x 5/2, :y 37/16} {:x 17/4, :y 507/64} {:x 235/64, :y 271/64} {:x 69/16, :y 143/16} {:x 65/16, :y 39/8} {:x 17/4, :y 10N} {:x 7/4, :y 5/2} {:x 11/4, :y 9/4})}), :marks ({:type \"symbol\", :from {:data \"00c7d7b9-0390-4a9d-928d-6544942226cd\"}, :properties {:enter {:x {:scale \"x\", :field \"data.x\"}, :y {:scale \"y\", :field \"data.y\"}, :fill {:value \"steelblue\"}, :fillOpacity {:value 1}}, :update {:shape \"circle\", :size {:value 70}, :stroke {:value \"transparent\"}}, :hover {:size {:value 210}, :stroke {:value \"white\"}}}} {:type \"symbol\", :from {:data \"4a73fcdf-7992-4c4c-99f8-0baae0132b33\"}, :properties {:enter {:x {:scale \"x\", :field \"data.x\"}, :y {:scale \"y\", :field \"data.y\"}, :fill {:value \"orange\"}, :fillOpacity {:value 1}}, :update {:shape \"circle\", :size {:value 70}, :stroke {:value \"transparent\"}}, :hover {:size {:value 210}, :stroke {:value \"white\"}}}})}}"}
 ;; <=
 
 ;; @@
