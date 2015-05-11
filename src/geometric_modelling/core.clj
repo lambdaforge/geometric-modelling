@@ -27,15 +27,10 @@
   "de Casteljau points calculated"
   [i r t b]
   (if (= r 0)
-    (get b i)
-    (let [r (+ (* (- 1 t) (de-casteljau i (dec r) t b))
+    (let [res (get b i)]
+      (println [i r] res)
+      res)
+    (let [res (+ (* (- 1 t) (de-casteljau i (dec r) t b))
                (* t (de-casteljau (inc i) (dec r) t b)))]
-      (println i r)
-      r)))
-
-
-(comment
-
-  (de-casteljau 0 4 3/4 [(array [1 1]) (array [2 3]) (array [3 2]) (array [5 7]) (array [4 11])])
-
-  )
+      (println [i r] res)
+      res)))
