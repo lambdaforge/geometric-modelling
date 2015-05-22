@@ -45,6 +45,13 @@
       res)))
 
 
+(defn de-boor
+  ""
+  []
+  )
+
+
+
 (comment
 
   (def points [[1 1] [2 4] [3 7] [4 11] [5 5]])
