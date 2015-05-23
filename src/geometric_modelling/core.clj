@@ -46,9 +46,19 @@
 
 
 (defn de-boor
-  ""
-  []
-  )
+  "Calculates de boor points"
+  [u0 u i r d n]
+  (if ( = r 0)
+    (get d i)
+    (if (= u0 (get u (+ i r)))
+      0
+      (let [result (+ (* (de-boor u0 u i (dec r) d n)
+                         (- 1 (/ (- u0 (get u i))
+                                 (- (get u (+ i n)) (get u i)))))
+                      (* (de-boor u0 u (inc i) (dec r) d n)
+                         (/ (- u0 (get u (+ i r)))
+                            (- (get u (+ i n 1)) (get u (+ i r))))))]
+        (println "i:" i ",r:" r "->" result)))))
 
 
 
@@ -60,4 +70,9 @@
 
   (de-casteljau 0 4 1/2 points de-casteljau-points)
 
+
+  (de-boor 2 [0 0 0 1 2 3 3 3] 2 1 [10 20 30 40 50] 2)
+
+  (de-boor 3 [0 0 0 0 1/4 1/2 3/4 1 1 1 1] )
+  
 )
